@@ -28,11 +28,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',  # for localhost (REACT Default)
-    'http://192.168.10.45:3000',  # for network
-)
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +40,7 @@ INSTALLED_APPS = [
     'api',
     'quizes',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'quizweb.urls'
@@ -77,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quizweb.wsgi.application'
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

@@ -37,10 +37,12 @@ class ResultsAPIView(APIView):
         score = 0
 
         for question_text in data.keys():
-            answers = [data[question_text]]
+            answers = data[question_text]
             question = Question.objects.get(text=question_text)
             correct_answers = list(question.answers.filter(
                 correct=True).values_list('text', flat=True))
+            print(correct_answers)
+            print(answers)
             if self.check_answers(answers, correct_answers):
                 score += 1
 
